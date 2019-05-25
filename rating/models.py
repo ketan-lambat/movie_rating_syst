@@ -6,8 +6,10 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Movie(models.Model):
   movieTitle = models.CharField(max_length=200, unique=True)
-  #def get_avg_rating(self):
-
+  release_date = models.DateField('date released')
+  def get_avg_rating(self):
+    avg = MovieRating.objects.aggregate(Avg('movieRating'))
+    return avg
   def __str__(self):
     return self.movieTitle
 

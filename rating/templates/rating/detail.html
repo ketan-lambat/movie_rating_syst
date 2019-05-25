@@ -1,0 +1,14 @@
+<h1> {{ movie.movieTitle }} </h1>
+
+<p>Released on {{ movie.release_date }}</p>
+
+{# <a href="{% url 'rating:rate' movie.id %}"> Rate {{ movie.movieTitle }}</a> #}
+
+{# <h2> Give A Rating to the Movie (0.0 - 5.0)</h2> #}
+
+<form action="{% url 'rating:avgRating' movie.id %}" method="post">
+    {% csrf_token %}
+    <label for="rating"> Give A Rating to the Movie (0.0 - 5.0) </label> <br>
+    <input type="number" step="any" name="rating" min="0.0" max="5.0">
+    <input type="submit" value="Rate">
+</form>
