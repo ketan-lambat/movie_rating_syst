@@ -20,7 +20,7 @@ class Movie(models.Model):
 class MovieRating(models.Model):
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
   movieRating = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
-  def __str__(self):
+  def __int__(self):
     return self.movieRating
 
 
