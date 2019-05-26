@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.template import loader
 from .models import Movie, MovieRating
+from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
@@ -33,3 +34,8 @@ def rate(request, movie_id):
 def avgRating(request, movie_id):
   movie = get_object_or_404(Movie, pk=movie_id)
   return render(request, 'rating/avgRating.html', {'movie': movie})
+
+
+def update_profile(request, user_id):
+  user = User.objects.get(pk=user_id)
+  user.save()
